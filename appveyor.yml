@@ -1,0 +1,11 @@
+environment:
+  nodejs_version: "stable"
+services:
+  - postgresql
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - cmd: SET PATH=C:\Program Files (x86)\nodejs;C:\Program Files\PostgreSQL\9.6
+  - npm install
+test_script:
+  - npm run test:appveyor
+build: off
