@@ -21,5 +21,10 @@ export default {
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT)
     }
+  },
+  cloud: {
+    url: process.env.CLOUD_URL,
+    name: process.env.CLOUD_NAME,
+    profiles: process.env.NODE_ENV
   }
 };
