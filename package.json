@@ -7,7 +7,9 @@
     "clean": "if exist ./dist rmdir /s/q dist;",
     "build": "babel src -d dist",
     "test": "nyc mocha src/tests/*.test.js --require @babel/register --require @babel/polyfill -R spec --timeout 50000 --exit",
-    "clean:build": "npm run clean && npm run build"
+    "clean:build": "npm run clean && npm run build",
+    "start:local": "set NODE_ENV=development&& nodemon --exec babel-node src/index",
+    "start:production": "export NODE_ENV=production && export PORT=80 && node dist/index"
   },
   "keywords": [],
   "author": "",

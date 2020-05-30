@@ -24,6 +24,7 @@ app.listen(process.env.PORT, async () => {
     const s = await sequelize.sync();
     if (s) console.log("Sequelize connected");
     await conf.load(env.cloud.url, env.cloud.name, env.cloud.profiles);
+    // console.log(conf.getProperty("eureka.instance.id"), "-----");
     const eureka = new Eureka(
       conf.getProperty("eureka.instance.id"),
       conf.getProperty("eureka.instance.name"),

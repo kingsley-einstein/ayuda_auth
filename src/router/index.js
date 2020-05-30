@@ -35,6 +35,8 @@ router.get(
   AuthController.getLoggedUser
 );
 
+router.get("/auth/byId/:id", AuthController.getUserById);
+
 router.get(
   "/auth/signout",
   AuthMiddleware.checkToken,

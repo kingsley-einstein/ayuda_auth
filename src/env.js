@@ -12,14 +12,16 @@ export default {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT)
+      port: parseInt(process.env.DB_PORT),
+      dialect: "postgres"
     },
     test: {
       database: process.env.TEST_DB_NAME,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT)
+      port: parseInt(process.env.DB_PORT),
+      dialect: "postgres"
     }
   },
   cloud: {

@@ -17,15 +17,21 @@ export class Eureka {
         ipAddr,
         vipAddress,
         hostName,
+        port: {
+          "@enabled": true,
+          $: parseInt(process.env.PORT)
+        },
         dataCenterInfo: {
           "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
           name: "MyOwn"
         }
       },
       eureka: {
+        registerWithEureka: true,
+        preferIpAddress: true,
         serviceUrls: {
           default: [
-            `${eurekaUrl}/eureka/apps`
+            `${eurekaUrl}/eureka/apps/`
           ]
         }
       }
@@ -34,7 +40,9 @@ export class Eureka {
 
   start() {
     this.eureka.start((err, r) => {
-      console.log(err.message);
+      if (err) console.log(
+        JSON.stringify(err.message)
+      );
     });
   }
 }

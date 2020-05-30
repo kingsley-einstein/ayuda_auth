@@ -16,12 +16,12 @@ export class AuthController {
         token: Jwt.sign({ id, password })
       };
       res.status(201).json({
-        statusCode: 201,
+        code: 201,
         response
       });
     } catch ({ message }) {
       res.status(500).json({
-        statusCode: 500,
+        code: 500,
         response: message
       });
     }
@@ -33,13 +33,13 @@ export class AuthController {
       const user = await AuthModel.findByEmail(email);
       if (!user) {
         return res.status(404).json({
-          statusCode: 404,
+          code: 404,
           response: "Account not found."
         });
       }
       if(!Bcrypt.compare(user.password, password)) {
         return res.status(400).json({
-          statusCode: 400,
+          code: 400,
           response: "Password is incorrect."
         });
       }
@@ -52,12 +52,12 @@ export class AuthController {
         token: Jwt.sign({ id, password: user.password })
       };
       res.status(200).json({
-        statusCode: 200,
+        code: 200,
         response
       });
     } catch ({ message }) {
       res.status(500).json({
-        statusCode: 500,
+        code: 500,
         response: message
       });
     }
@@ -72,12 +72,12 @@ export class AuthController {
       });
       const response = { email, firstName, lastName, id };
       res.status(200).json({
-        statusCode: 200,
+        code: 200,
         response
       });
     } catch ({ message }) {
       res.status(500).json({
-        statusCode: 500,
+        code: 500,
         response: message
       });
     }
@@ -88,12 +88,29 @@ export class AuthController {
       const { email, id, firstName, lastName } = req.user;
       const response = { email, id, firstName, lastName };
       res.status(200).json({
-        statusCode: 200,
+        code: 200,
         response
       });
     } catch ({ message }) {
       res.status(500).json({
-        statusCode: 500,
+        code: 500,
+        response: message
+      });
+    }
+  }
+
+  static async getUserById(req, res) {
+    try {
+      const { id } = req.params;
+      const { email, firstName, lastName } = await AuthModel.findByPk(id);
+      const response = { email, firstName, lastName };
+      res.status(200).json({
+        code: 200,
+        response
+      });
+    } catch ({ message }) {
+      res.status(500).json({
+        code: 500,
         response: message
       });
     }
@@ -105,12 +122,12 @@ export class AuthController {
       const actual = token;
       await TokenModel.create({ actual });
       res.status(200).json({
-        statusCode: 200,
+        code: 200,
         response: `Successfully logged out user with id ${user.id}`
       });
     } catch ({ message }) {
       res.status(500).json({
-        statusCode: 500,
+        code: 500,
         response: message
       });
     }
