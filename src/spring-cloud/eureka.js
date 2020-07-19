@@ -17,6 +17,9 @@ export class Eureka {
         ipAddr,
         vipAddress,
         hostName,
+        statusPageUrl: ipAddr + "/info",
+        healthCheckUrl: ipAddr + "/health",
+        homePageUrl: ipAddr + "/",
         port: {
           "@enabled": true,
           $: parseInt(process.env.PORT)

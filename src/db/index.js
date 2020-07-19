@@ -4,6 +4,8 @@ import configure from "./config";
 
 const models = { AuthModel, TokenModel };
 
+// console.log(configure[process.env.NODE_ENV]);
+
 const sequelize = new Sequelize(
   configure[process.env.NODE_ENV]
 );   
