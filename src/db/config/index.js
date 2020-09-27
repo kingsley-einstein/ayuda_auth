@@ -20,5 +20,15 @@ export default {
     sync: {
       force: true
     }
-  }
+  },
+ production: {
+   ...db.production,
+   define: {
+    underscored: true
+   },
+   sync: {
+    force: false,
+    alter: true
+   }
+ }
 }
