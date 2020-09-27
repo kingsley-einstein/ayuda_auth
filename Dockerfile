@@ -1,11 +1,8 @@
-ARG NODE_VERSION=latest
+ARG NODE_VERSION=14-alpine
 FROM node:${NODE_VERSION}
 COPY src ./
 COPY package*.json .
 RUN npm install
 COPY . .
-RUN ["npm", "run", "build:local"]
-ENV PORT=2760
-ENV JWT_SECRET=anonymous_kestrel
 EXPOSE ${PORT}
-ENTRYPOINT ["npm", "run", "start:local"]
+ENTRYPOINT ["npm", "run", "start:production"]

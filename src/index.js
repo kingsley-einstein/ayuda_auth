@@ -18,7 +18,7 @@ configure(config(app));
 
 const conf = new CloudConfig();
 
-app.listen(process.env.PORT, async () => {
+app.listen(env.port[process.env.NODE_ENV], async () => {
   console.log(`Express server is running`);
   if (process.env.NODE_ENV !== "test") {
     console.log("Running in " + process.env.NODE_ENV + " on port " + process.env.PORT);

@@ -4,7 +4,8 @@ export default {
   jwtSecret: process.env.JWT_SECRET,
   port: {
     development: parseInt(process.env.PORT),
-    test: parseInt(process.env.TEST_PORT)
+    test: parseInt(process.env.TEST_PORT),
+    production: parseInt(process.env.PORT)
   },
   db: {
     development: {
